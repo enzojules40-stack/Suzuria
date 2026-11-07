@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suzuria - Votre IA</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101018;color:white;font-family:Arial,sans-serif}
+header{padding:22px;border-bottom:1px solid #292938;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:25px;font-weight:bold;color:#b99aff}
+nav{display:flex;gap:12px;padding:15px;justify-content:center}
+button{background:#272438;color:white;border:1px solid #48405d;border-radius:12px;padding:12px;cursor:pointer}
+button.active{background:#8655d9}
+main{max-width:750px;margin:65px auto;padding:20px;text-align:center}
+h1{font-size:42px;margin-bottom:10px}
+h1 span{color:#b99aff}
+p{color:#aaa}
+#messages{margin:30px 0;text-align:left}
+.message{background:#252334;padding:15px;border-radius:15px;margin:12px 0;white-space:pre-wrap}
+form{display:flex;gap:8px;margin-top:30px}
+input{flex:1;min-width:0;background:#252334;border:1px solid #48405d;border-radius:12px;padding:15px;color:white}
+#studio{display:none}
+textarea{width:100%;height:100px;background:#252334;color:white;border:1px solid #48405d;border-radius:12px;padding:15px;margin-top:15px}
+footer{color:#777;text-align:center;padding:30px;font-size:12px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">✦ SUZURIA</div>
+<button onclick="alert('Bienvenue sur Suzuria !')">Mon compte</button>
+</header>
+
+<nav>
+<button id="chatBtn" class="active" onclick="show('chat')">💬 Discussion</button>
+<button id="studioBtn" onclick="show('studio')">🎨 Studio d'images</button>
+</nav>
+
+<main>
+<section id="chat">
+<h1>Bonjour, <span>je suis Suzuria.</span></h1>
+<p>Ton intelligence artificielle, sans limites inutiles.</p>
+<div id="messages"></div>
+<form onsubmit="send(event)">
+<input id="question" placeholder="Pose-moi une question..." required>
+<button type="submit">Envoyer ➤</button>
+</form>
+</section>
+
+<section id="studio">
+<h1>Studio <span>créatif</span></h1>
+<p>Imagine, crée et transforme tes images.</p>
+<textarea id="prompt" placeholder="Décris l'image que tu souhaites créer..."></textarea>
+<br><br>
+<button onclick="alert('Le générateur d’images sera connecté prochainement.')">✨ Générer une image</button>
+</section>
+</main>
+
+<footer>SUZURIA © 2026 — Votre imagination, vos possibilités.</footer>
+
+<script>
+function show(page){
+document.getElementById('chat').style.display=page==='chat'?'block':'none';
+document.getElementById('studio').style.display=page==='studio'?'block':'none';
+document.getElementById('chatBtn').classList.toggle('active',page==='chat');
+document.getElementById('studioBtn').classList.toggle('active',page==='studio');
+}
+function send(e){
+e.preventDefault();
+let input=document.getElementById('question');
+let box=document.getElementById('messages');
+let msg=document.createElement('div');
+msg.className='message';
+msg.textContent='Toi : '+input.value;
+box.appendChild(msg);
+let answer=document.createElement('div');
+answer.className='message';
+answer.textContent='Suzuria : Merci pour ton message ! Mon intelligence artificielle sera connectée prochainement.';
+box.appendChild(answer);
+input.value='';
+}
+</script>
+</body>
+</html>
